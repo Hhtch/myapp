@@ -1,20 +1,32 @@
-function onClick(){
- Name = document.getElementById('Name');
- Age = document.getElementById('Age');
- City = document.getElementById('City');
- name1 = Name.value;
- console.log(name1);
- let a = fetch('/first/addpost',  {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        "Name" : `${name1}`,
-        "Age" : `${Age}`,
-        "City":  `${City}`,
-   }),
-  });
+function drowTable (){
+  console.log("aaaaaaaaaaaaa");
+                  
+ 
+
+
+
+ /*let body = document.body,
+    tbl  = document.createElement( 'table' );
+        for( let i = 0; i < title.length; i++ ) {
+            let tr = tbl.insertRow();
+            let td = tr.insertCell();
+        
+            td.appendChild(document.createTextNode( title[i] ));
+            td.setAttribute( 'id', 't'+i );
+            td.addEventListener
+                ("click", () => {clickTitle( i )}, false);       
+        }*/
+
+
+ let a = fetch('/first/drow',  {
+  method: 'POST',
+  headers: {
+  'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(),
+});
+  console.log(NN);
+
 }
 
 /*

@@ -15,8 +15,49 @@ app.get('/', async (req, res) => {
 });
 */
 
+router.post('/drow', function(req, res, next) {
+  let db = new sqlite3.Database('./Base.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+      console.log('Connected to the Base database.');
+    });
 
-router.get('/add', function(req, res, next) {  
+  db.serialize(() => {
+    db.each(`SELECT UserID as id,
+                    Name as name,
+                    Age as age,
+                    City as city
+                FROM First`, (err, row) => {
+                    if (err) {
+                      console.error(err.message);
+                    }
+                    console.log(row.id + "\t" + row.name +"\t"+ row.age+"\t"+ row.city);
+                    let NN = row.name
+                    
+                //   let tbl = getElementById("Table");
+    
+                //   let tr = tbl.insertRow();
+                //    let td = tr.insertCell();
+
+              //     td.appendChild(document.createTextNode( 'row.id' ));
+                //    td.appendChild(document.createTextNode( 'row.name' ));
+                //   td.appendChild(document.createTextNode( 'row.age' ));
+                //   td.appendChild(document.createTextNode( 'row.city' ));  
+                })
+  });
+  
+  db.close((err) => {
+    if (err) {
+      console.error(err.message);
+    }
+    console.log('Close the database connection.');
+  });                     
+  
+}   
+);
+
+router.post('/addpost', function(req, res, next) {  
   console.log(req.query.Name);
   let db = new sqlite3.Database('./Base.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
@@ -30,13 +71,40 @@ router.get('/add', function(req, res, next) {
     console.log(res.body);
     console.log(res.query);
   console.log(req.Name);
-    db.serialize(() => {
+/*    db.serialize(() => {
       db.each(`    
                 INSERT INTO First (Name, Age, City)
                   VALUES
                     ("${req.query.Name}", ${req.query.Age}, "${req.query.City}" );
               `)
     });
+*/
+  db.close((err) => {
+    if (err) {
+      console.error(err.message);
+    }
+    console.log('Close the database connection.');
+  });                                   
+}   
+);
+
+
+//Запрос работает для метода Get
+router.get('/addget', function(req, res, next) {  
+  let db = new sqlite3.Database('./Base.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+  console.log('Connected to the Base database.');
+  });
+
+  db.serialize(() => {
+    db.each(`    
+            INSERT INTO First (Name, Age, City)
+              VALUES
+                ("${req.query.Name}", ${req.query.Age}, "${req.query.City}" );
+          `)
+  });
 
   db.close((err) => {
     if (err) {
@@ -48,15 +116,7 @@ router.get('/add', function(req, res, next) {
 );
 
 /*
-db.each(`SELECT UserID as id,
-                  Name as name,
-                  City as city
-               FROM First`, (err, row) => {
-                  if (err) {
-                    console.error(err.message);
-                  }
-                  console.log(row.id + "\t" + row.name + row.city);
-                });
+
                 */
 
 /*

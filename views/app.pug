@@ -3,8 +3,8 @@ html(lang="en")
   head
     title = "First app"
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="/javascripts/onClick.js").       
-    
+    script(src="/javascripts/onClick.js")       
+    script(src="/javascripts/drowTable.js")  
   body
     
     h1 Создаю первое приложение
@@ -13,60 +13,43 @@ html(lang="en")
 
     #content
       p.description В форму ниже вводим имя, возраст и город.
+    p Пока нифига не работает POST:
     p
       | Name: 
-      input(type='text', name='Name', value='')
+      input(type='text', name='Name', id="Name", value='')
     p  
       |          Age: 
-      input(type='text', name='Age', value='')
+      input(type='text', name='Age', id="Age", value='')
     p  
       |          City: 
-      input(type='text', name='City', value='')
-    input( type="button" value="Готово" onClick="onClick()")
+      input(type='text', name='City', id="City", value='')
+    button(type="button"  id="postdb" alt="clickMe" onclick="onClick()" ) Отправить в БД
+   
 
-    input(name='caption' placeholder='caption')
-  textarea(name='description' placeholder='description')
-  button(class='submit_button') Добавить комментарий
-
-    p 
-  form(method=GET action='/first/add')
+  
+    p Работает вариант с вводом через GET:
+        
+  form(method=GET action='/first/addget')
     input(name='Name' placeholder='Name')
     input(name='Age' placeholder='Age')
     input(name='City' placeholder='City')
     input(type='submit' value='Передать')
 
-    p 
-  form(method=POST action='/first/add2')
-    input(name='Name' placeholder='Name')
-    input(name='Age' placeholder='Age')
-    input(name='City' placeholder='City')
-    input(type='submit' value='Передать2')
-
-
-
-
-
-
-p Text inside <em>paragraph</em> tag
-p
-  | Multi
-  | Line
 p.
-  Another way for large
-  bodies of text!
+  Вторая часть. Нажимаю на кнопку и рисую из базы данных таблицу 
 
+button(type="button"  id="TableCreate" alt="clickMe" onclick="drowTable()" ) Показать таблицу
+
+p
+table(id="Table")
+  tr
+    th Id
+    th Name
+    th Age
+    th City
+  
 		
 h2 IDs and Classes
-
-
-h2 Attributes
-  // for boolean attributes you can pass true/false or omit them
-  // Multi lines ?
-  // No commas ?
-input(type="checkbox"
-  name="terms"
-  checked)
-
 h2 Nesting
 
 
@@ -76,12 +59,5 @@ ul#menu
 
 h2 Variables and Escaping         
 
-
-    button(                              
-      one                          
-      onClick=() => alert('Hello')     
-      text='number ' + 10                
-      condition=foo === bar ? foo : bar  
-    )  
 
 
