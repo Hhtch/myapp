@@ -1,0 +1,87 @@
+doctype html
+html(lang="en")
+  head
+    title = "First app"
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/javascripts/onClick.js").       
+    
+  body
+    
+    h1 Создаю первое приложение
+
+    h2 Первая часть, записываю данные в БД
+
+    #content
+      p.description В форму ниже вводим имя, возраст и город.
+    p
+      | Name: 
+      input(type='text', name='Name', value='')
+    p  
+      |          Age: 
+      input(type='text', name='Age', value='')
+    p  
+      |          City: 
+      input(type='text', name='City', value='')
+    input( type="button" value="Готово" onClick="onClick()")
+
+    input(name='caption' placeholder='caption')
+  textarea(name='description' placeholder='description')
+  button(class='submit_button') Добавить комментарий
+
+    p 
+  form(method=GET action='/first/add')
+    input(name='Name' placeholder='Name')
+    input(name='Age' placeholder='Age')
+    input(name='City' placeholder='City')
+    input(type='submit' value='Передать')
+
+    p 
+  form(method=POST action='/first/add2')
+    input(name='Name' placeholder='Name')
+    input(name='Age' placeholder='Age')
+    input(name='City' placeholder='City')
+    input(type='submit' value='Передать2')
+
+
+
+
+
+
+p Text inside <em>paragraph</em> tag
+p
+  | Multi
+  | Line
+p.
+  Another way for large
+  bodies of text!
+
+		
+h2 IDs and Classes
+
+
+h2 Attributes
+  // for boolean attributes you can pass true/false or omit them
+  // Multi lines ?
+  // No commas ?
+input(type="checkbox"
+  name="terms"
+  checked)
+
+h2 Nesting
+
+
+ul#menu
+  li: a(href="#target1", title="Home") Home
+  li: a(href="#target2", title="Contact") Contact
+
+h2 Variables and Escaping         
+
+
+    button(                              
+      one                          
+      onClick=() => alert('Hello')     
+      text='number ' + 10                
+      condition=foo === bar ? foo : bar  
+    )  
+
+

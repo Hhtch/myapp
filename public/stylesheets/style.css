@@ -1,0 +1,12 @@
+body {
+  font-family: Verdana;
+  font-size: 13px;
+  background: #eee;
+}
+
+h1, h2, h3 { font-size: 22px; color: #1e319c; }
+h2 { font-size: 18px; }
+h3 { font-size: 14px; }
+
+a { color: #C2575B; text-decoration: none; }
+a:hover { color: #F76F76; }
