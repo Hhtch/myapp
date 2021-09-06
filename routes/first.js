@@ -65,20 +65,15 @@ router.post('/addpost', function(req, res, next) {
     }
       console.log('Connected to the Base database.');
     });
-    console.log(req.query);
-    console.log(req.body);
-    console.log(req.body.Name);
-    console.log(res.body);
-    console.log(res.query);
-  console.log(req.Name);
-/*    db.serialize(() => {
-      db.each(`    
-                INSERT INTO First (Name, Age, City)
-                  VALUES
-                    ("${req.query.Name}", ${req.query.Age}, "${req.query.City}" );
-              `)
-    });
-*/
+   
+  db.serialize(() => {
+    db.each(`    
+              INSERT INTO First (Name, Age, City)
+                VALUES
+                  ("${req.body.Name}", ${req.body.Age}, "${req.body.City}" );
+            `)
+  });
+
   db.close((err) => {
     if (err) {
       console.error(err.message);

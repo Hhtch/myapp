@@ -2,17 +2,19 @@ function onClick(){
  Name = document.getElementById('Name');
  Age = document.getElementById('Age');
  City = document.getElementById('City');
- name1 = Name.value;
- console.log(name1);
+ InputName = Name.value;
+ InputAge = Age.value;
+ InputCity = City.value; 
+ 
  let a = fetch('/first/addpost',  {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        "Name" : `${name1}`,
-        "Age" : `${Age}`,
-        "City":  `${City}`,
+        "Name" : InputName,
+        "Age" : InputAge,
+        "City": InputCity,
    }),
   });
 }
