@@ -8,8 +8,7 @@ async function drowTable (){
   body: JSON.stringify(),
 });
   res = await response.json();
-  console.log(res);
-
+ 
   let tbl  = document.getElementById( 'Table' );
     for( let i = 0; i < res.length; i++ ) {
         let tr = tbl.insertRow();
