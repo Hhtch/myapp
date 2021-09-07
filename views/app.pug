@@ -13,7 +13,7 @@ html(lang="en")
 
     #content
       p.description В форму ниже вводим имя, возраст и город.
-    p Пока нифига не работает POST:
+    p Работает вариант с вводом через POST:
     p
       | Name: 
       input(type='text', name='Name', id="Name", value='')
@@ -49,15 +49,11 @@ table(id="Table")
     th City
   
 		
-h2 IDs and Classes
-h2 Nesting
-
+h2 Меню
 
 ul#menu
-  li: a(href="#target1", title="Home") Home
-  li: a(href="#target2", title="Contact") Contact
-
-h2 Variables and Escaping         
+    li: a(href="/", title="Home") Home
+    li: a(href="/first", title="First") First app    
 
 
 

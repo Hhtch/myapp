@@ -11,8 +11,9 @@ h3 { font-size: 14px; }
 a { color: #C2575B; text-decoration: none; }
 a:hover { color: #F76F76; }
 
-th {
+th, td {
   border: solid black 1px;  
+  text-align: center;
 }
 
 #Table{

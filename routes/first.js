@@ -8,12 +8,6 @@ router.get('/', function(req, res, next) {
   res.render('app', { title: 'Input some info' });
 }   
 );
-/*
-app.get('/', async (req, res) => {
-  const query = await axios.get('http://localhost:3001/results');
-  res.render('index', { employees: query.data });
-});
-*/
 
 router.post('/drow', function(req, res, next) {
   let db = new sqlite3.Database('./Base.db', sqlite3.OPEN_READWRITE, (err) => {
@@ -22,29 +16,21 @@ router.post('/drow', function(req, res, next) {
     }
       console.log('Connected to the Base database.');
     });
-
-  db.serialize(() => {
-    db.each(`SELECT UserID as id,
-                    Name as name,
-                    Age as age,
-                    City as city
-                FROM First`, (err, row) => {
-                    if (err) {
-                      console.error(err.message);
-                    }
-                    console.log(row.id + "\t" + row.name +"\t"+ row.age+"\t"+ row.city);
-                    let NN = row.name
-                    
-                //   let tbl = getElementById("Table");
-    
-                //   let tr = tbl.insertRow();
-                //    let td = tr.insertCell();
-
-              //     td.appendChild(document.createTextNode( 'row.id' ));
-                //    td.appendChild(document.createTextNode( 'row.name' ));
-                //   td.appendChild(document.createTextNode( 'row.age' ));
-                //   td.appendChild(document.createTextNode( 'row.city' ));  
-                })
+  let sql =  `SELECT UserID as id,
+              Name as name,
+              Age as age,
+              City as city
+            FROM First`
+  let data = []; 
+ 
+  db.all(sql, [], (err, rows) => {
+    if (err){
+      console.error(err.message); 
+    }
+    rows.forEach((row) => {      
+      newdata = data.push ({"Id": row.id, "Name" : row.name, "Age": row.age, "City" : row.city,});    
+    })   
+    res.json(data);
   });
   
   db.close((err) => {
@@ -52,14 +38,12 @@ router.post('/drow', function(req, res, next) {
       console.error(err.message);
     }
     console.log('Close the database connection.');
-  });                     
-  
-}   
+  });
+} 
 );
 
 router.post('/addpost', function(req, res, next) {  
-  console.log(req.query.Name);
-  let db = new sqlite3.Database('./Base.db', sqlite3.OPEN_READWRITE, (err) => {
+   let db = new sqlite3.Database('./Base.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
       console.error(err.message);
     }
@@ -110,28 +94,4 @@ router.get('/addget', function(req, res, next) {
 }   
 );
 
-/*
-
-                */
-
-/*
-var sqlite3 = require('sqlite3').verbose()
-var db = new sqlite3.Database(':memory:')
-
-db.serialize(function () {
-  db.run('CREATE TABLE lorem (info TEXT)')
-  var stmt = db.prepare('INSERT INTO lorem VALUES (?)')
-
-  for (var i = 0; i < 10; i++) {
-    stmt.run('Ipsum ' + i)
-  }
-
-  stmt.finalize()
-
-  db.each('SELECT rowid AS id, info FROM lorem', function (err, row) {
-    console.log(row.id + ': ' + row.info)
-  })
-})
-
-db.close()*/
 module.exports = router;
