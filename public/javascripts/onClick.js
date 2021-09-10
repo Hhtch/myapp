@@ -1,4 +1,4 @@
-function onClick(){
+async function onClick(){
  Name = document.getElementById('Name');
  Age = document.getElementById('Age');
  City = document.getElementById('City');
@@ -6,7 +6,7 @@ function onClick(){
  InputAge = Age.value;
  InputCity = City.value; 
  
- let a = fetch('/first/addpost',  {
+ let res = await fetch('/first/addpost',  {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json'
@@ -17,4 +17,13 @@ function onClick(){
         "City": InputCity,
    }),
   });
+
+
+if (res.responseStatus === 200){
+  //draw table
+  console.log( "row added" );
+} else {
+  console.error( "row added" );
 }
+}
+

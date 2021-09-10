@@ -4,7 +4,7 @@ html(lang="en")
     title = "First app"
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="/javascripts/onClick.js")       
-    script(src="/javascripts/drowTable.js")  
+    script(src="/javascripts/drawTable.js")  
   body
     
     h1 Создаю первое приложение
@@ -23,30 +23,16 @@ html(lang="en")
     p  
       |          City: 
       input(type='text', name='City', id="City", value='')
-    button(type="button"  id="postdb" alt="clickMe" onclick="onClick()" ) Отправить в БД
-   
-
-  
-    p Работает вариант с вводом через GET:
-        
-  form(method=GET action='/first/addget')
-    input(name='Name' placeholder='Name')
-    input(name='Age' placeholder='Age')
-    input(name='City' placeholder='City')
-    input(type='submit' value='Передать')
+    button(type="button"  id="postdb" alt="clickMe" onclick="onClick()" ) Отправить в БД    
 
 p.
-  Вторая часть. Нажимаю на кнопку и рисую из базы данных таблицу 
+  Вторая часть. Нажимаю на кнопку и обновляю  таблицу данных
 
-button(type="button"  id="TableCreate" alt="clickMe" onclick="drowTable()" ) Показать таблицу
+button(type="button"  id="TableCreate" alt="clickMe" onclick="drowTable()" ) Обновить таблицу
 
 p
 table(id="Table")
-  tr
-    th Id
-    th Name
-    th Age
-    th City
+  
   
 		
 h2 Меню
